@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-школа</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #ffd600;
+            --main-color-dark: #e6c200;
+            --accent-color: #222;
+            --text-color: #222;
+            --bg-color: #fff;
+            --gray: #f5f5f5;
+            --border-radius: 22px;
+            --transition: .2s;
+            --shadow: 0 8px 32px rgba(34,34,34,0.08);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Header */
+        .header {
+            background: var(--bg-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+        .header__brand {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .header__nav ul {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .header__nav a {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 1.07rem;
+            letter-spacing: 0.5px;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            transition: color var(--transition), border-bottom var(--transition);
+        }
+        .header__nav a:hover, .header__nav a:focus {
+            color: var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+        }
+        .header__btn {
+            background: var(--main-color);
+            color: var(--accent-color);
+            padding: 12px 36px;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.07rem;
+            transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+            border: none;
+            box-shadow: 0 2px 12px rgba(255,214,0,0.12);
+            margin-left: 32px;
+            letter-spacing: 0.5px;
+        }
+        .header__btn:hover, .header__btn:focus {
+            background: var(--accent-color);
+            color: var(--main-color);
+            box-shadow: 0 4px 24px rgba(34,34,34,0.10);
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(90deg, #fffbe6 60%, #ffe066 100%);
+            padding: 70px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+        .hero__content {
+            max-width: 540px;
+        }
+        .hero__content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 22px;
+            color: var(--accent-color);
+            line-height: 1.13;
+            letter-spacing: 1px;
+        }
+        .hero__content p {
+            font-size: 1.25rem;
+            margin-bottom: 38px;
+            color: #444;
+            font-weight: 500;
+        }
+        .hero__cta {
+            display: inline-block;
+            background: var(--main-color);
+            color: var(--accent-color);
+            padding: 18px 48px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+            border: none;
+            box-shadow: 0 2px 12px rgba(255,214,0,0.12);
+            letter-spacing: 0.5px;
+        }
+        .hero__cta:hover, .hero__cta:focus {
+            background: var(--accent-color);
+            color: var(--main-color);
+            box-shadow: 0 4px 24px rgba(34,34,34,0.10);
+        }
+        .hero__img-placeholder {
+            width: 390px;
+            height: 320px;
+            background: #fff;
+            border-radius: 40px 40px 120px 40px;
+            box-shadow: 0 8px 32px rgba(34,34,34,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bbb;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: 2px dashed #ffe066;
+            min-width: 260px;
+        }
+        /* Benefits */
+        .benefits {
+            background: var(--gray);
+            padding: 70px 0 60px 0;
+        }
+        .benefits h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: 0.5px;
+        }
+        .benefits__list {
+            display: flex;
+            gap: 36px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .benefit {
+            background: #fff;
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            padding: 38px 32px 32px 32px;
+            max-width: 340px;
+            flex: 1 1 260px;
+            text-align: center;
+            transition: transform .18s, box-shadow .18s;
+        }
+        .benefit:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 12px 36px rgba(34,34,34,0.13);
+        }
+        .benefit__icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 22px auto;
+            background: var(--main-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent-color);
+            box-shadow: 0 2px 12px rgba(255,214,0,0.10);
+        }
+        .benefit:nth-child(1) .benefit__icon::before {
+            content: "👩‍🏫";
+        }
+        .benefit:nth-child(2) .benefit__icon::before {
+            content: "💡";
+        }
+        .benefit:nth-child(3) .benefit__icon::before {
+            content: "💬";
+        }
+        .benefit h3 {
+            font-size: 1.22rem;
+            font-weight: 700;
+            margin-bottom: 13px;
+            letter-spacing: 0.2px;
+        }
+        .benefit p {
+            color: #555;
+            font-size: 1.04rem;
+            font-weight: 500;
+        }
+        /* Program */
+        .program {
+            padding: 70px 0 60px 0;
+        }
+        .program h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 36px;
+            letter-spacing: 0.5px;
+        }
+        .program__list {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.13rem;
+            color: #444;
+            list-style: none;
+            line-height: 2.1;
+            padding: 0;
+        }
+        .program__list li {
+            background: #fffbe6;
+            border-radius: 16px;
+            margin-bottom: 18px;
+            padding: 16px 24px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(255,214,0,0.06);
+            position: relative;
+        }
+        .program__list li::before {
+            content: "✔";
+            color: var(--main-color-dark);
+            font-size: 1.1em;
+            margin-right: 12px;
+            position: relative;
+            top: 1px;
+        }
+        /* Reviews */
+        .reviews {
+            background: var(--gray);
+            padding: 70px 0 60px 0;
+        }
+        .reviews h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: 0.5px;
+        }
+        .reviews__list {
+            display: flex;
+            gap: 36px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .review {
+            background: #fff;
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            padding: 32px 28px;
+            max-width: 320px;
+            flex: 1 1 220px;
+            position: relative;
+            transition: transform .18s, box-shadow .18s;
+        }
+        .review:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 12px 36px rgba(34,34,34,0.13);
+        }
+        .review__text {
+            font-size: 1.09rem;
+            margin-bottom: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+        .review__author {
+            color: #888;
+            font-size: 1.01rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+        /* Signup */
+        .signup {
+            padding: 70px 0 60px 0;
+        }
+        .signup__container {
+            background: linear-gradient(90deg, #fffbe6 60%, #ffe066 100%);
+            border-radius: 40px;
+            box-shadow: var(--shadow);
+            padding: 48px 32px 40px 32px;
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .signup__container h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            margin-bottom: 28px;
+            color: var(--accent-color);
+            letter-spacing: 0.5px;
+        }
+        .signup__form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .signup__form input {
+            padding: 15px 18px;
+            border-radius: 14px;
+            border: 1.5px solid #ffe066;
+            font-size: 1.07rem;
+            font-family: inherit;
+            font-weight: 500;
+            background: #fff;
+            transition: border var(--transition);
+        }
+        .signup__form input:focus {
+            border: 1.5px solid var(--main-color-dark);
+            outline: none;
+        }
+        .signup__form button {
+            background: var(--main-color);
+            color: var(--accent-color);
+            padding: 15px 0;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1.13rem;
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+            box-shadow: 0 2px 12px rgba(255,214,0,0.12);
+            letter-spacing: 0.5px;
+        }
+        .signup__form button:hover, .signup__form button:focus {
+            background: var(--accent-color);
+            color: var(--main-color);
+            box-shadow: 0 4px 24px rgba(34,34,34,0.10);
+        }
+        /* Footer */
+        .footer {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 38px 0 32px 0;
+        }
+        .footer__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .footer__info div {
+            margin-bottom: 7px;
+            font-size: 1.04rem;
+            font-weight: 500;
+        }
+        .footer__links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 1.04rem;
+            font-weight: 500;
+            transition: color var(--transition);
+            letter-spacing: 0.2px;
+        }
+        .footer__links a:hover, .footer__links a:focus {
+            color: var(--main-color);
+        }
+
+        /* --- Мобильная адаптация --- */
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 10px;
+            }
+            .header__container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .header__nav ul {
+                gap: 18px;
+            }
+            .header__btn {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+            .hero__container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 32px;
+            }
+            .hero__img-placeholder {
+                width: 100%;
+                height: 180px;
+                margin-top: 10px;
+            }
+            .benefits__list, .reviews__list, .footer__container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 18px;
+            }
+            .benefit, .review {
+                max-width: 100%;
+            }
+            .signup__container {
+                padding: 24px 6px;
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .header__brand {
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+            .header__container {
+                padding: 10px 0;
+            }
+            .header__nav ul {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .hero__content h1 {
+                font-size: 1.5rem;
+            }
+            .hero__content p {
+                font-size: 1rem;
+            }
+            .hero__cta {
+                font-size: 1rem;
+                padding: 13px 24px;
+            }
+            .benefits h2, .program h2, .reviews h2 {
+                font-size: 1.3rem;
+            }
+            .benefit, .review {
+                padding: 14px 6px;
+            }
+            .benefit__icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+                margin-bottom: 14px;
+            }
+            .program__list li {
+                font-size: 0.98rem;
+                padding: 10px 12px;
+            }
+            .signup__container {
+                border-radius: 18px;
+                padding: 14px 2px;
+            }
+            .footer__container {
+                gap: 10px;
+            }
+            .footer__links a {
+                margin-left: 0;
+                margin-right: 14px;
+                font-size: 0.98rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .hero__img-placeholder {
+                height: 80px;
+                font-size: 0.9rem;
+            }
+            .benefit__icon {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__brand">Онлайн-школа</div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="#about">О школе</a></li>
+                    <li><a href="#program">Программа</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="#signup" class="header__btn">Записаться</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container hero__container">
+            <div class="hero__content">
+                <h1>Обучение онлайн<br>для детей и взрослых</h1>
+                <p>Современные методики, опытные преподаватели, поддержка на каждом этапе обучения.</p>
+                <a href="#signup" class="hero__cta">Записаться на курс</a>
+            </div>
+            <div class="hero__img-placeholder">Какая-то фотка</div>
+        </div>
+    </section>
+    <section class="benefits" id="about">
+        <div class="container">
+            <h2>Почему выбирают нас?</h2>
+            <div class="benefits__list">
+                <div class="benefit">
+                    <div class="benefit__icon"></div>
+                    <h3>Опытные преподаватели</h3>
+                    <p>Наши педагоги имеют большой опыт работы и индивидуальный подход к каждому ученику.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit__icon"></div>
+                    <h3>Современные методики</h3>
+                    <p>Используем актуальные программы и интерактивные материалы для эффективного обучения.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit__icon"></div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Оперативная помощь и поддержка на всех этапах обучения.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="program" id="program">
+        <div class="container">
+            <h2>Программа обучения</h2>
+            <ul class="program__list">
+                <li>Занятия в удобное время</li>
+                <li>Индивидуальные и групповые форматы</li>
+                <li>Практические задания и проекты</li>
+                <li>Регулярная обратная связь</li>
+            </ul>
+        </div>
+    </section>
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2>Отзывы учеников</h2>
+            <div class="reviews__list">
+                <div class="review">
+                    <div class="review__text">Очень понравилось обучение! Всё понятно и интересно.</div>
+                    <div class="review__author">— Анна, 14 лет</div>
+                </div>
+                <div class="review">
+                    <div class="review__text">Спасибо преподавателям за поддержку и мотивацию!</div>
+                    <div class="review__author">— Иван, 12 лет</div>
+                </div>
+                <div class="review">
+                    <div class="review__text">Рекомендую всем, кто хочет учиться онлайн!</div>
+                    <div class="review__author">— Мария, 16 лет</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="signup" id="signup">
+        <div class="container signup__container">
+            <h2>Запишитесь на бесплатное пробное занятие</h2>
+            <form class="signup__form">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <button type="submit">Записаться</button>
+            </form>
+        </div>
+    </section>
+    <footer class="footer" id="contacts">
+        <div class="container footer__container">
+            <div class="footer__info">
+                <div>© 2025 Онлайн-школа</div>
+                <div>goshack@gmail.com</div>
+                <div>+7 (705) 101-08-12</div>
+            </div>
+            <div class="footer__links">
+                <a href="#about">О школе</a>
+                <a href="#program">Программа</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#signup">Записаться</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
